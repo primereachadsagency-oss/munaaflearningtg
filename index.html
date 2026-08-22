@@ -173,30 +173,29 @@
       text-align: justify;
     }
   </style>
-<!-- Meta Pixel Code -->
-<script>
-!function(f,b,e,v,n,t,s)
-{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-n.queue=[];t=b.createElement(e);t.async=!0;
-t.src=v;s=b.getElementsByTagName(e)[0];
-s.parentNode.insertBefore(t,s)}(window, document,'script',
-'https://connect.facebook.net/en_US/fbevents.js');
-fbq('init', '2493712704455747');
-fbq('track', 'PageView');
-</script>
-<noscript><img height="1" width="1" style="display:none"
-src="https://www.facebook.com/tr?id=2493712704455747&ev=PageView&noscript=1"
-/></noscript>
-<!-- End Meta Pixel Code -->
-  
+
+  <!-- Meta Pixel Code -->
+  <script>
+    !function(f,b,e,v,n,t,s)
+    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+    n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];
+    s.parentNode.insertBefore(t,s)}(window, document,'script',
+    'https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', '2493712704455747');
+    fbq('track', 'PageView');
+  </script>
+  <noscript><img height="1" width="1" style="display:none"
+  src="https://www.facebook.com/tr?id=2493712704455747&ev=PageView&noscript=1"
+  /></noscript>
+  <!-- End Meta Pixel Code -->
 </head>
 <body>
 
   <div class="card">
     <div class="profile-img-container">
-      <!-- Profile image placeholder -->
       <img src="Munaaf.jpeg" alt="Trade With Munaaf" class="profile-img">
     </div>
 
@@ -213,12 +212,13 @@ src="https://www.facebook.com/tr?id=2493712704455747&ev=PageView&noscript=1"
       <div class="tag">ఉచితం <span>Access</span></div>
     </div>
 
-    <a href="https://t.me/your_telegram_link" class="btn-telegram">
+    <!-- Click event directly fires Pixel Subscribe before navigating -->
+    <a href="https://t.me/your_telegram_link" id="telegram-btn" onclick="trackSubscribe()" class="btn-telegram">
       <i class="fab fa-telegram-plane"></i> Join Free Telegram Community
     </a>
 
     <div class="redirect-text">
-      ⏳ ఆటోమేటిక్‌గా Redirect అవుతుంది <b>4s</b> లో...
+      ⏳ ఆటోమేటిక్‌గా Redirect అవుతుంది <b id="timer">10s</b> లో...
     </div>
 
     <div class="features-list">
@@ -232,6 +232,30 @@ src="https://www.facebook.com/tr?id=2493712704455747&ev=PageView&noscript=1"
       Disclaimer: ఈ platform కేవలం educational మరియు informational objectives కోసం మాత్రమే. ఇది ఏ విధమైన financial advice కాదు మరియు ఏ లాభాలకు హామీ ఇవ్వదు. Stock market investments carry risk — ఏదైనా నిర్ణయం తీసుకునే ముందు దయచేసి మీ స్వంత research చేసుకోండి.
     </p>
   </div>
+
+  <script>
+    var targetUrl = "https://t.me/your_telegram_link"; // Apna Telegram Link Yahan Badlein
+    var timeLeft = 10;
+    var timerElement = document.getElementById("timer");
+
+    // Pixel Subscribe Event sirf Manual Click par chalega
+    function trackSubscribe() {
+      if (typeof fbq === 'function') {
+        fbq('track', 'Subscribe');
+      }
+    }
+
+    // 10 Second Countdown Timer (Bina Pixel Event ke redirect karega)
+    var countdown = setInterval(function() {
+      timeLeft--;
+      timerElement.textContent = timeLeft + "s";
+      
+      if (timeLeft <= 0) {
+        clearInterval(countdown);
+        window.location.href = targetUrl;
+      }
+    }, 1000);
+  </script>
 
 </body>
 </html>
