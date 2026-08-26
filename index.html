@@ -142,7 +142,7 @@
 
     .features-list {
       text-align: left;
-      margin-bottom: 25px;
+      margin-bottom: 20px;
       display: flex;
       flex-direction: column;
       gap: 10px;
@@ -166,15 +166,104 @@
       color: #ffffff;
     }
 
-    .disclaimer {
+    /* Footer Links & Modals */
+    .footer-nav {
+      margin-top: 15px;
+      padding-top: 15px;
+      border-top: 1px solid #3d1412;
+      display: flex;
+      justify-content: center;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .footer-btn {
+      background: none;
+      border: none;
+      color: #cda882;
+      font-size: 10px;
+      cursor: pointer;
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .footer-btn:hover {
+      color: #f39c12;
+      text-decoration: underline;
+    }
+
+    .footer-copy {
       font-size: 8px;
       color: #6e5852;
+      margin-top: 10px;
       line-height: 1.4;
-      text-align: justify;
+    }
+
+    /* Modal Backdrop & Box */
+    .modal-backdrop {
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(0, 0, 0, 0.85);
+      backdrop-filter: blur(4px);
+      z-index: 999;
+      display: none;
+      justify-content: center;
+      align-items: center;
+      padding: 15px;
+    }
+
+    .modal-backdrop.active {
+      display: flex;
+    }
+
+    .modal-box {
+      background: #190908;
+      border: 1px solid #5a221a;
+      border-radius: 16px;
+      width: 100%;
+      max-width: 380px;
+      padding: 20px;
+      color: #d1c4b8;
+      text-align: left;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.9);
+      position: relative;
+      max-height: 80vh;
+      overflow-y: auto;
+    }
+
+    .modal-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid #3d1412;
+      padding-bottom: 10px;
+      margin-bottom: 12px;
+    }
+
+    .modal-title {
+      font-size: 14px;
+      font-weight: 700;
+      color: #f39c12;
+    }
+
+    .modal-close {
+      background: none;
+      border: none;
+      color: #cda882;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    .modal-body {
+      font-size: 11px;
+      line-height: 1.6;
+    }
+
+    .modal-body p {
+      margin-bottom: 8px;
     }
   </style>
 
-  <!-- Meta Pixel Code -->
   <script>
     !function(f,b,e,v,n,t,s)
     {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
@@ -190,8 +279,7 @@
   <noscript><img height="1" width="1" style="display:none"
   src="https://www.facebook.com/tr?id=2493712704455747&ev=PageView&noscript=1"
   /></noscript>
-  <!-- End Meta Pixel Code -->
-</head>
+  </head>
 <body>
 
   <div class="card">
@@ -212,7 +300,6 @@
       <div class="tag">ఉచితం <span>Access</span></div>
     </div>
 
-    <!-- Click event directly fires Pixel Subscribe before navigating -->
     <a href="https://t.me/+Ni9npWrGEEs0Zjhl" id="telegram-btn" onclick="trackSubscribe()" class="btn-telegram">
       <i class="fab fa-telegram-plane"></i> Join Free Telegram Community
     </a>
@@ -228,24 +315,82 @@
       <div class="feature-item">పూర్తి Active Community Support</div>
     </div>
 
-    <p class="disclaimer">
-      Disclaimer: ఈ platform కేవలం educational మరియు informational objectives కోసం మాత్రమే. ఇది ఏ విధమైన financial advice కాదు మరియు ఏ లాభాలకు హామీ ఇవ్వదు. Stock market investments carry risk — ఏదైనా నిర్ణయం తీసుకునే ముందు దయచేసి మీ స్వంత research చేసుకోండి.
-    </p>
+    <div class="footer-nav">
+      <button class="footer-btn" onclick="openModal('modal-about')">About Us</button> •
+      <button class="footer-btn" onclick="openModal('modal-terms')">Terms & Conditions</button> •
+      <button class="footer-btn" onclick="openModal('modal-disclaimer')">Disclaimer</button> •
+      <button class="footer-btn" onclick="openModal('modal-contact')">Contact Us</button>
+    </div>
+
+    <div class="footer-copy">
+      This site is not part of the Facebook website or Facebook Inc. Additionally, This site is NOT endorsed by Facebook in any way.
+    </div>
+  </div>
+
+  <div id="modal-backdrop" class="modal-backdrop" onclick="closeModals()">
+    
+    <div id="modal-about" class="modal-box" onclick="event.stopPropagation()">
+      <div class="modal-header">
+        <span class="modal-title">About Us</span>
+        <button class="modal-close" onclick="closeModals()"><i class="fas fa-times"></i></button>
+      </div>
+      <div class="modal-body">
+        <p><strong>TRADE WITH MUNAAF</strong> కు స్వాగతం.</p>
+        <p>మేము ప్రధానంగా స్టాక్ మార్కెట్, ట్రేడింగ్ టెక్నికల్స్, మరియు ఫైనాన్షియల్ ఎడ్యుకేషన్ పై నాలెడ్జ్ అందించడానికి ఈ కమ్యూనిటీని ప్రారంభించాము.</p>
+        <p>మార్కెట్ పరిజ్ఞానాన్ని ప్రారంభకులకు సులభంగా అర్థమయ్యే రీతిలో నేర్పించడమే మా ముఖ్య ఉద్దేశం.</p>
+      </div>
+    </div>
+
+    <div id="modal-terms" class="modal-box" onclick="event.stopPropagation()">
+      <div class="modal-header">
+        <span class="modal-title">Terms & Conditions</span>
+        <button class="modal-close" onclick="closeModals()"><i class="fas fa-times"></i></button>
+      </div>
+      <div class="modal-body">
+        <p>1. ఈ ప్లాట్‌ఫారమ్‌లో లభించే ప్రతి అంశం విద్య మరియు సమాచార ప్రయోజనాల కోసం మాత్రమే.</p>
+        <p>2. Telegram ఛానెల్‌లో చేరడం పూర్తి ఉచితం.</p>
+        <p>3. ఇక్కడ అందించే నాలెడ్జ్‌ను ఉపయోగించి మీరు తీసుకునే ట్రేడింగ్ నిర్ణయాలకు మీరే స్వయంగా బాధ్యులు.</p>
+      </div>
+    </div>
+
+    <div id="modal-disclaimer" class="modal-box" onclick="event.stopPropagation()">
+      <div class="modal-header">
+        <span class="modal-title">Disclaimer</span>
+        <button class="modal-close" onclick="closeModals()"><i class="fas fa-times"></i></button>
+      </div>
+      <div class="modal-body">
+        <p>Disclaimer: ఈ platform కేవలం educational మరియు informational objectives కోసం మాత్రమే. ఇది ఏ విధమైన financial advice కాదు మరియు ఏ లాభాలకు హామీ ఇవ్వదు.</p>
+        <p>Stock market investments carry risk — ఏదైనా నిర్ణయం తీసుకునే ముందు దయచేసి మీ స్వంత research చేసుకోండి. మేము SEBI రిజిస్టర్డ్ అడ్వైజర్లు కాము.</p>
+      </div>
+    </div>
+
+    <div id="modal-contact" class="modal-box" onclick="event.stopPropagation()">
+      <div class="modal-header">
+        <span class="modal-title">Contact Us</span>
+        <button class="modal-close" onclick="closeModals()"><i class="fas fa-times"></i></button>
+      </div>
+      <div class="modal-body">
+        <p>మీకు ఏవైనా ప్రశ్నలు ఉంటే మమ్మల్ని సంప్రదించండి:</p>
+        <p style="margin-top: 8px;">📧 <strong>Email:</strong> support@tradewithmunaaf.com</p>
+        <p>✈️ <strong>Telegram:</strong> Direct Community Helpdesk</p>
+      </div>
+    </div>
+
   </div>
 
   <script>
-    var targetUrl = "https://t.me/+Ni9npWrGEEs0Zjhl"; // Apna Telegram Link Yahan Badlein
+    var targetUrl = "https://t.me/+Ni9npWrGEEs0Zjhl";
     var timeLeft = 10;
     var timerElement = document.getElementById("timer");
 
-    // Pixel Subscribe Event sirf Manual Click par chalega
+    // Pixel Subscribe Event
     function trackSubscribe() {
       if (typeof fbq === 'function') {
         fbq('track', 'Subscribe');
       }
     }
 
-    // 10 Second Countdown Timer (Bina Pixel Event ke redirect karega)
+    // Countdown Timer
     var countdown = setInterval(function() {
       timeLeft--;
       timerElement.textContent = timeLeft + "s";
@@ -255,6 +400,18 @@
         window.location.href = targetUrl;
       }
     }, 1000);
+
+    // Modal Control Script
+    function openModal(modalId) {
+      document.getElementById('modal-backdrop').classList.add('active');
+      document.querySelectorAll('.modal-box').forEach(box => box.style.display = 'none');
+      document.getElementById(modalId).style.display = 'block';
+    }
+
+    function closeModals() {
+      document.getElementById('modal-backdrop').classList.remove('active');
+      document.querySelectorAll('.modal-box').forEach(box => box.style.display = 'none');
+    }
   </script>
 
 </body>
