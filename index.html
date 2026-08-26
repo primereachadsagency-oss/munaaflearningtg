@@ -127,17 +127,7 @@
       padding: 14px;
       border-radius: 12px;
       box-shadow: 0 4px 15px rgba(211, 84, 0, 0.4);
-      margin-bottom: 12px;
-    }
-
-    .redirect-text {
-      font-size: 12px;
-      color: #cda882;
-      margin-bottom: 25px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 5px;
+      margin-bottom: 20px;
     }
 
     .features-list {
@@ -264,6 +254,7 @@
     }
   </style>
 
+  <!-- Meta Pixel Code -->
   <script>
     !function(f,b,e,v,n,t,s)
     {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
@@ -279,7 +270,8 @@
   <noscript><img height="1" width="1" style="display:none"
   src="https://www.facebook.com/tr?id=2493712704455747&ev=PageView&noscript=1"
   /></noscript>
-  </head>
+  <!-- End Meta Pixel Code -->
+</head>
 <body>
 
   <div class="card">
@@ -300,13 +292,10 @@
       <div class="tag">ఉచితం <span>Access</span></div>
     </div>
 
+    <!-- Click event directly fires Pixel Subscribe before navigating -->
     <a href="https://t.me/+Ni9npWrGEEs0Zjhl" id="telegram-btn" onclick="trackSubscribe()" class="btn-telegram">
       <i class="fab fa-telegram-plane"></i> Join Free Telegram Community
     </a>
-
-    <div class="redirect-text">
-      ⏳ ఆటోమేటిక్‌గా Redirect అవుతుంది <b id="timer">10s</b> లో...
-    </div>
 
     <div class="features-list">
       <div class="feature-item">ప్రతిరోజు Market Updates & Insights</div>
@@ -315,6 +304,7 @@
       <div class="feature-item">పూర్తి Active Community Support</div>
     </div>
 
+    <!-- Footer Links Trigger Modals -->
     <div class="footer-nav">
       <button class="footer-btn" onclick="openModal('modal-about')">About Us</button> •
       <button class="footer-btn" onclick="openModal('modal-terms')">Terms & Conditions</button> •
@@ -327,8 +317,10 @@
     </div>
   </div>
 
+  <!-- POPUP MODALS -->
   <div id="modal-backdrop" class="modal-backdrop" onclick="closeModals()">
     
+    <!-- About Us Modal -->
     <div id="modal-about" class="modal-box" onclick="event.stopPropagation()">
       <div class="modal-header">
         <span class="modal-title">About Us</span>
@@ -341,6 +333,7 @@
       </div>
     </div>
 
+    <!-- Terms & Conditions Modal -->
     <div id="modal-terms" class="modal-box" onclick="event.stopPropagation()">
       <div class="modal-header">
         <span class="modal-title">Terms & Conditions</span>
@@ -353,6 +346,7 @@
       </div>
     </div>
 
+    <!-- Disclaimer Modal -->
     <div id="modal-disclaimer" class="modal-box" onclick="event.stopPropagation()">
       <div class="modal-header">
         <span class="modal-title">Disclaimer</span>
@@ -364,6 +358,7 @@
       </div>
     </div>
 
+    <!-- Contact Us Modal -->
     <div id="modal-contact" class="modal-box" onclick="event.stopPropagation()">
       <div class="modal-header">
         <span class="modal-title">Contact Us</span>
@@ -379,27 +374,12 @@
   </div>
 
   <script>
-    var targetUrl = "https://t.me/+Ni9npWrGEEs0Zjhl";
-    var timeLeft = 10;
-    var timerElement = document.getElementById("timer");
-
     // Pixel Subscribe Event
     function trackSubscribe() {
       if (typeof fbq === 'function') {
         fbq('track', 'Subscribe');
       }
     }
-
-    // Countdown Timer
-    var countdown = setInterval(function() {
-      timeLeft--;
-      timerElement.textContent = timeLeft + "s";
-      
-      if (timeLeft <= 0) {
-        clearInterval(countdown);
-        window.location.href = targetUrl;
-      }
-    }, 1000);
 
     // Modal Control Script
     function openModal(modalId) {
